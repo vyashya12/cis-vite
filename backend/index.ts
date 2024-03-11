@@ -1,4 +1,4 @@
-import express, { Request, Response, json } from "express";
+import express, { Express, Request, Response } from "express";
 import {
   S3Client,
   GetObjectCommand,
@@ -12,7 +12,7 @@ import { prisma } from "./_base";
 import formidable from "express-formidable";
 import * as fs from "fs";
 
-const app = express();
+const app: Express = express();
 app.use(formidable());
 const port = 8000;
 
@@ -142,7 +142,7 @@ app.post("/api/upload", async (req: Request, res: Response) => {
 });
 
 app.delete("/api/upload", async (req: Request, res: Response) => {
-  const formData = await req.fields!!.key;
+  // const formData = await req.fields!!.key;
   let keyText = req.fields!!.key as unknown as string;
   const command = new DeleteObjectCommand({
     Bucket: process.env.BUCKETNAME,
