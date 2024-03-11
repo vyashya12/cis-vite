@@ -14,7 +14,7 @@ import * as fs from "fs";
 
 const app = express();
 app.use(formidable());
-const port = 3000;
+const port = 8000;
 
 type imageData = {
   id: number;
