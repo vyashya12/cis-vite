@@ -60,7 +60,7 @@ export default function ImageUploader() {
     formData.append("files", fileData!![0]);
     const response = await axios({
       method: "POST",
-      url: `http://${import.meta.env.VITE_IP}:3000/api/upload`,
+      url: `http://${import.meta.env.VITE_IP}:8000/api/upload`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -77,7 +77,7 @@ export default function ImageUploader() {
     formData.append("key", key);
     const response = await axios({
       method: "delete",
-      url: `http://${import.meta.env.VITE_IP}:3000/api/upload`,
+      url: `http://${import.meta.env.VITE_IP}:8000/api/upload`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -88,7 +88,7 @@ export default function ImageUploader() {
 
   const fetchImages = async () => {
     const response = await axios.get(
-      `http://${import.meta.env.VITE_IP}:3000/api/upload`
+      `http://${import.meta.env.VITE_IP}:8000/api/upload`
     );
     const imageList: responseData = response.data;
     setData(imageList);
