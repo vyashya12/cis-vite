@@ -44,12 +44,9 @@ export type imageResponse = {
 };
 
 export default function ImageUploader() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<AddImageInput>({ resolver: zodResolver(addImageSchema) });
+  const { register, handleSubmit, reset } = useForm<AddImageInput>({
+    resolver: zodResolver(addImageSchema),
+  });
   const [data, setData] = useState<responseData>();
   const [fileData, setFileData] = useState<FileWithPath[]>();
 
@@ -99,7 +96,7 @@ export default function ImageUploader() {
   let ec2Id = import.meta.env.VITE_INSTANCEID;
   let avaz = import.meta.env.VITE_AZ;
 
-  const selectedFiles = fileData?.map((file, index) => (
+  const selectedFiles = fileData?.map((file) => (
     <Text key={file.name}>
       <b>{file.name}</b> ({(file.size / 1024).toFixed(2)} kb)
       <CloseButton size="xs" onClick={() => setFileData([])} />
