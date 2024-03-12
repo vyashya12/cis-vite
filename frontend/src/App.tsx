@@ -1,12 +1,14 @@
-import "@mantine/core/styles.css";
-import { MantineProvider } from "@mantine/core";
-import { theme } from "./theme";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import ImageUploader from "./components/ImageUploader";
+import "@mantine/core/styles.css";
 
 export default function App() {
   return (
-    <MantineProvider theme={theme}>
-      <ImageUploader />
-    </MantineProvider>
+    <>
+      <ColorSchemeScript forceColorScheme="dark" />
+      <MantineProvider forceColorScheme="dark">
+        <ImageUploader />
+      </MantineProvider>
+    </>
   );
 }

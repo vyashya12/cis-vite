@@ -11,7 +11,7 @@ import {
   SimpleGrid,
 } from "@mantine/core";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { AddImageInput, addImageSchema } from "../../schema/image-schema";
+import { AddImageInput, addImageSchema } from "../schema/image-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { SetStateAction, useState } from "react";
@@ -50,14 +50,14 @@ export default function ImageUploader() {
   const [data, setData] = useState<responseData>();
   const [fileData, setFileData] = useState<FileWithPath[]>();
 
-  const onSubmit: SubmitHandler<AddImageInput> = async (data) => {
+  const onSubmit: SubmitHandler<AddImageInput> = async (data: any) => {
     const formData = new FormData();
     console.log(data.description, fileData);
     formData.append("description", data.description);
     formData.append("files", fileData!![0]);
     const response = await axios({
       method: "POST",
-      url: `http://${import.meta.env.VITE_IP}:8000/api/upload`,
+      url: `http://${process.env.REACT_APP_IP}:8000/api/upload`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -74,7 +74,7 @@ export default function ImageUploader() {
     formData.append("key", key);
     const response = await axios({
       method: "delete",
-      url: `http://${import.meta.env.VITE_IP}:8000/api/upload`,
+      url: `http://${process.env.REACT_APP_IP}:8000/api/upload`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -85,7 +85,7 @@ export default function ImageUploader() {
 
   const fetchImages = async () => {
     const response = await axios.get(
-      `http://${import.meta.env.VITE_IP}:8000/api/upload`
+      `http://${process.env.REACT_APP_IP}:8000/api/upload`
     );
     const imageList: responseData = response.data;
     setData(imageList);
@@ -93,8 +93,8 @@ export default function ImageUploader() {
     return response;
   };
 
-  let ec2Id = import.meta.env.VITE_INSTANCEID;
-  let avaz = import.meta.env.VITE_AZ;
+  let ec2Id = process.env.REACT_APP_INSTANCEID;
+  let avaz = process.env.REACT_APP_AZ;
 
   const selectedFiles = fileData?.map((file) => (
     <Text key={file.name}>
