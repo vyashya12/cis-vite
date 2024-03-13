@@ -93,8 +93,8 @@ export default function ImageUploader() {
     return response;
   };
 
-  let ec2Id = process.env.REACT_APP_INSTANCEID;
-  let avaz = process.env.REACT_APP_AZ;
+  // let ec2Id = process.env.REACT_APP_INSTANCEID;
+  // let avaz = process.env.REACT_APP_AZ;
 
   const selectedFiles = fileData?.map((file) => (
     <Text key={file.name}>
@@ -110,7 +110,7 @@ export default function ImageUploader() {
           CIS Image App
         </Title>
 
-        <div
+        {/* <div
           style={{
             display: "flex",
             flexDirection: "row",
@@ -139,7 +139,7 @@ export default function ImageUploader() {
           <Title ta="center" order={4}>
             {avaz}
           </Title>
-        </div>
+        </div> */}
 
         <Paper
           withBorder
